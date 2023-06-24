@@ -5,4 +5,9 @@
 //  Created by Александр Корепанов on 10.06.2023.
 //
 
-import Foundation
+import UIKit
+
+struct ToDoItem {
+    var name: String
+    var isDone: Bool
+}
