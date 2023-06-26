@@ -10,12 +10,16 @@ import UIKit
 class ToDoCell: UITableViewCell {
     
     var todoTitleLabel = UILabel()
+    var todoCheckImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(todoTitleLabel)
+        addSubview(todoCheckImage)
         configureTitleLabel()
         setTitleLabelConstraints()
+        configureImageView()
+        setImageViewConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -24,6 +28,12 @@ class ToDoCell: UITableViewCell {
     
     func set(item: ToDoItem ) {
         todoTitleLabel.text = item.name
+//        todoCheckImage.image = функция которая проверяет какое значение у isDone, если false то uncheck, если true то check
+        todoCheckImage.image = UIImage(named: checkOrNot(isCheck: item.isDone))
+    }
+    
+    func configureImageView(){
+        todoCheckImage.clipsToBounds = true
     }
     
     func configureTitleLabel() {
@@ -38,5 +48,20 @@ class ToDoCell: UITableViewCell {
         todoTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100).isActive = true
     }
     
+    func setImageViewConstraints() {
+        todoCheckImage.translatesAutoresizingMaskIntoConstraints = false
+        todoCheckImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        todoCheckImage.leadingAnchor.constraint(equalTo: todoTitleLabel.trailingAnchor, constant: 50).isActive = true
+        todoCheckImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        todoCheckImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+    }
+    
+    func checkOrNot(isCheck: Bool) -> String {
+        if isCheck {
+            return "check"
+        } else {
+            return "uncheck"
+        }
+    }
     
 }
