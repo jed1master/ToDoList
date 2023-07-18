@@ -29,11 +29,13 @@ class ToDoCell: UITableViewCell {
     func set(item: ToDoItem ) {
         todoTitleLabel.text = item.name
 //        todoCheckImage.image = функция которая проверяет какое значение у isDone, если false то uncheck, если true то check
-        todoCheckImage.image = UIImage(named: checkOrNot(isCheck: item.isDone))
+        todoCheckImage.image = UIImage(systemName: checkOrNot(isCheck: item.isDone))
     }
     
     func configureImageView(){
+        todoCheckImage.contentMode = .scaleAspectFit
         todoCheckImage.clipsToBounds = true
+        todoCheckImage.tintColor = .black
     }
     
     func configureTitleLabel() {
@@ -58,9 +60,9 @@ class ToDoCell: UITableViewCell {
     
     func checkOrNot(isCheck: Bool) -> String {
         if isCheck {
-            return "check"
+            return "checkmark.square"
         } else {
-            return "uncheck"
+            return "square"
         }
     }
     

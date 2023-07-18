@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ToDoItem {
+struct ToDoItem: Codable {
     var name: String
     var isDone: Bool
 }

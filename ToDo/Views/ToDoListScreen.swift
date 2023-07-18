@@ -11,10 +11,11 @@ class ToDoListScreen: UIViewController {
     
     var tableView = UITableView()
     var toDoList: [ToDoItem] = []
+    let manager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        toDoList = fetchData()
+        toDoList = manager.loadData()
         configureTableView()
         setupNavigationBar()
     }
@@ -81,7 +82,9 @@ class ToDoListScreen: UIViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             if let textFieldText = textField.text {
                 self.toDoList.append(ToDoItem(name: textFieldText, isDone: false))
+                self.manager.saveData(myArray: self.toDoList)
                 self.tableView.reloadData()
+                
             }
         }
         
@@ -92,7 +95,11 @@ class ToDoListScreen: UIViewController {
         alert.addAction(action)
         
         present(alert, animated: true)
+        
     }
+    
+    
+    
     
 }
 
@@ -111,8 +118,20 @@ extension ToDoListScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! ToDoCell
+        var todoItem = toDoList[indexPath.row]
+//        if todoItem.isDone == true {
+//            todoItem.isDone = false
+//        } else {
+//            todoItem.isDone = true
+//        }
+        todoItem.isDone = todoItem.isDone == false
         
+        toDoList[indexPath.row] = todoItem
+        cell.set(item: todoItem)
+        manager.saveData(myArray: toDoList)
     }
+    
     
     
 }

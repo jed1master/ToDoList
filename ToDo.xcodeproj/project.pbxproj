@@ -16,6 +16,7 @@
 		F24F50FE2A24D54100D39DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24F50FC2A24D54100D39DF1 /* LaunchScreen.storyboard */; };
 		F25FACE82A2FA63C00905030 /* UIview+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FACE72A2FA63C00905030 /* UIview+Ext.swift */; };
 		F25FACEB2A2FAA2400905030 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FACEA2A2FAA2400905030 /* ToDoCell.swift */; };
+		F2FC055B2A5F19270037C50C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC055A2A5F19270037C50C /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F24F50FF2A24D54100D39DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F25FACE72A2FA63C00905030 /* UIview+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIview+Ext.swift"; sourceTree = "<group>"; };
 		F25FACEA2A2FAA2400905030 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
+		F2FC055A2A5F19270037C50C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				F25FACEA2A2FAA2400905030 /* ToDoCell.swift */,
 				F220404A2A33CF8F009FD3A5 /* ToDoItem.swift */,
+				F2FC055A2A5F19270037C50C /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F25FACE82A2FA63C00905030 /* UIview+Ext.swift in Sources */,
+				F2FC055B2A5F19270037C50C /* DataManager.swift in Sources */,
 				F25FACEB2A2FAA2400905030 /* ToDoCell.swift in Sources */,
 				F220404B2A33CF8F009FD3A5 /* ToDoItem.swift in Sources */,
 				F24F50F32A24D53D00D39DF1 /* ToDoListScreen.swift in Sources */,
