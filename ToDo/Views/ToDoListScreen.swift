@@ -4,10 +4,12 @@
 //
 //  Created by Александр Корепанов on 29.05.2023.
 //
+//delegate
 
 import UIKit
 
 class ToDoListScreen: UIViewController {
+    
     
     var tableView = UITableView()
     var toDoList: [ToDoItem] = []
@@ -45,34 +47,7 @@ class ToDoListScreen: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewToDoItem))
         navigationItem.title = "ToDo List"
-//        navigationItem.titleView = createCustomTitleView(titleName: "ToDo List")
-//
-//        navigationItem.rightBarButtonItem = createAddToDoItemButton(imageName: "plusImage", selector: #selector(addNewToDoItem))
     }
-    
-//    func createCustomTitleView(titleName: String) -> UIView {
-//        let view = UIView()
-//        view.frame = CGRect(x: 0, y: 0, width: 320, height: 41)
-//
-//        let titlelabel = UILabel()
-//        titlelabel.text = titleName
-//        titlelabel.frame = CGRect(x: 120, y: 50, width: 220, height: 30)
-//        titlelabel.font = UIFont.systemFont(ofSize: 20)
-//        view.addSubview(titlelabel)
-//
-//        return view
-//    }
-//    func createAddToDoItemButton(imageName: String, selector: Selector) -> UIBarButtonItem {
-//        let button = UIButton(type: .system)
-//        button.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        button.imageView?.contentMode = .scaleAspectFit
-////        button.contentVerticalAlignment = .fill
-////        button.contentHorizontalAlignment = .fill
-//        button.addTarget(self, action: selector, for: .touchUpInside)
-//
-//        let menuBarItem = UIBarButtonItem(customView: button)
-//        return menuBarItem
-//    }
     
     @objc func addNewToDoItem() {
         
@@ -84,7 +59,6 @@ class ToDoListScreen: UIViewController {
                 self.toDoList.append(ToDoItem(name: textFieldText, isDone: false))
                 self.manager.saveData(myArray: self.toDoList)
                 self.tableView.reloadData()
-                
             }
         }
         
@@ -97,10 +71,6 @@ class ToDoListScreen: UIViewController {
         present(alert, animated: true)
         
     }
-    
-    
-    
-    
 }
 
 extension ToDoListScreen: UITableViewDelegate, UITableViewDataSource {
@@ -112,24 +82,27 @@ extension ToDoListScreen: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell") as! ToDoCell
         let todoItem = toDoList[indexPath.row]
         cell.set(item: todoItem)
+        cell.todoCellDelegate = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.cellForRow(at: indexPath) as! ToDoCell
-        var todoItem = toDoList[indexPath.row]
-//        if todoItem.isDone == true {
-//            todoItem.isDone = false
-//        } else {
-//            todoItem.isDone = true
-//        }
-        todoItem.isDone = todoItem.isDone == false
+        _ = tableView.cellForRow(at: indexPath) as! ToDoCell
         
-        toDoList[indexPath.row] = todoItem
-        cell.set(item: todoItem)
-        manager.saveData(myArray: toDoList)
+        
+        //        var todoItem = toDoList[indexPath.row]
+        //        todoItem.isDone = todoItem.isDone == false
+        //        toDoList[indexPath.row] = todoItem
+        //        cell.set(item: todoItem)
+        //        manager.saveData(myArray: toDoList)
+        let todoItem = toDoList[indexPath.row]
+        
+        let nextScreen = ToDoItemViewController(todoItem: todoItem)
+        nextScreen.todoItemViewDelegate = self
+        nextScreen.title = "ToDoList Editing"
+        self.navigationController?.pushViewController(nextScreen, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -141,12 +114,34 @@ extension ToDoListScreen: UITableViewDelegate, UITableViewDataSource {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
-    
-    
 }
-//extension ToDoListScreen {
-//    func fetchData() -> [ToDoItem] {
-//
-//    }
-//}
+
+extension ToDoListScreen: TodoCellDelegate {
+    
+    func didCheckButtonTapped(item: ToDoItem, cell: ToDoCell?) {
+        var newItem = item
+        //        var todoItem = toDoList[indexPath.row]
+        //        todoItem.isDone = todoItem.isDone == false
+        //        toDoList[indexPath.row] = todoItem
+        //        cell.set(item: todoItem)
+        //        manager.saveData(myArray: toDoList)
+        newItem.isDone = newItem.isDone == false
+        if let index = self.toDoList.firstIndex(where: { $0.id == item.id } ) {
+            toDoList[index] = newItem
+            cell?.set(item: newItem)
+            manager.saveData(myArray: toDoList)
+        }
+    }
+}
+
+extension ToDoListScreen: TodoItemViewDelegate {
+    func didBackButtonTapped(item: ToDoItem, todoItemVewController: ToDoItemViewController) {
+        var newItem = item
+        newItem.name = todoItemVewController.todoItemTextView.text
+        if let index = self.toDoList.firstIndex(where: {$0.id == item.id}) {
+            toDoList[index] = newItem
+            manager.saveData(myArray: toDoList)
+            self.tableView.reloadData()
+        }
+    }
+}

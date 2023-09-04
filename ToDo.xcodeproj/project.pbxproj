@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F217D73C2A77ECCC007B973D /* ToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217D73B2A77ECCC007B973D /* ToDoItemViewController.swift */; };
 		F220404B2A33CF8F009FD3A5 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F220404A2A33CF8F009FD3A5 /* ToDoItem.swift */; };
 		F24F50EF2A24D53D00D39DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F50EE2A24D53D00D39DF1 /* AppDelegate.swift */; };
 		F24F50F12A24D53D00D39DF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F50F02A24D53D00D39DF1 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F217D73B2A77ECCC007B973D /* ToDoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewController.swift; sourceTree = "<group>"; };
 		F220404A2A33CF8F009FD3A5 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		F24F50EB2A24D53D00D39DF1 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F24F50EE2A24D53D00D39DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F24F50F22A24D53D00D39DF1 /* ToDoListScreen.swift */,
+				F217D73B2A77ECCC007B973D /* ToDoItemViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				F25FACE82A2FA63C00905030 /* UIview+Ext.swift in Sources */,
 				F2FC055B2A5F19270037C50C /* DataManager.swift in Sources */,
 				F25FACEB2A2FAA2400905030 /* ToDoCell.swift in Sources */,
+				F217D73C2A77ECCC007B973D /* ToDoItemViewController.swift in Sources */,
 				F220404B2A33CF8F009FD3A5 /* ToDoItem.swift in Sources */,
 				F24F50F32A24D53D00D39DF1 /* ToDoListScreen.swift in Sources */,
 				F24F50EF2A24D53D00D39DF1 /* AppDelegate.swift in Sources */,

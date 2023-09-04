@@ -10,4 +10,5 @@ import UIKit
 struct ToDoItem: Codable {
     var name: String
     var isDone: Bool
+    var id = UUID()
 }
